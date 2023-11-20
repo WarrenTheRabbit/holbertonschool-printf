@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Running pre-commit hooks..."
+
+FILES=$(git diff --cached --name-only --diff-filter=AM)
+
+for FILE in $FILES; do
+	if [[ ! "$FILE" =~ / ]]; then
+		if grep -qP '\s*int\s+main\(.*\)' "$FILE"; then
+			echo COMMIT STOPPED: root level files should not contain \'main\'.
+			echo -e "\t"The file \'"$FILE"\' is at the root level and contains a 'main' function.
+			echo -e "\t"If \'"$FILE"\' is pushed, Holberton\'s build will fail.
+			echo
+			echo pre-commit check failed.
+			exit 1 
+		fi
+	fi
+	echo -e "\tAll checks for 'main' in root passed."
+done
+
+
+echo All pre-commit checks passed.
+exit 0
