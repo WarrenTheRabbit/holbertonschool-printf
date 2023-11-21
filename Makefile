@@ -39,8 +39,8 @@ test: clean $(TEST_TARGETS)
 	@echo Completed tests.
 
 test_that_prints_string: $(OBJECTS)
-	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o $@
-	@$(EXPECT_PASS) $@ 'Hello world!'
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ 'Hello world!'
 	
 
 # Phony targets execute even if target exists in file system.
