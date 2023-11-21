@@ -1,0 +1,64 @@
+#!/bin/bash
+#
+# DESCRIPTION
+# ------------------------------------------------------------
+# This is a command line tool that asserts the output of an executable 
+# against expected output. The program to test and the expected output
+# are passed as arguments to the script. The script can handle programs
+# that themselves take command line arguments. See USAGE for the details.
+#
+# If the asserted output is the same as the actual output, the test passes.
+# If the asserted output is not the same as the actual output, the test fails
+# and prints a comparison of the outputs.
+#
+# USAGE
+# ------------------------------------------------------------
+#
+# expect_pass {program under test} {args}* {expected output}
+# *: args is optional.
+# 
+#
+# Testing a program that takes arguments:
+#
+#	expect_pass sum 3 4 12
+#
+# Testing a program that takes NO arguments:
+#
+#	expect_pass hello_world 'hello world!'
+#
+# ------------------------------------------------------------
+
+
+# A test should be provided with 1) a program to test and b)
+# its expected output. 
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 program [arg1 arg2 ...] expected_output"
+    exit 1
+fi
+
+# Arrange.
+program=$1
+shift 
+
+if [ ! -t 0 ]; then
+	expected_output="$(cat)"
+	args=("$@")
+else
+	expected_output="${@: -1}"
+	args=("${@:1:$#-1}")
+fi
+
+# Act.
+echo -e "\n$program"
+output=$(./"$program" "${args[@]}")
+
+# Assert.
+if [[ "$output" == "$expected_output" ]]; then
+    echo "PASS"
+else
+    echo "FAIL"
+    echo "--------output----------"
+    echo "$output"
+    echo "-------expected---------"
+    echo "$expected_output"
+fi
