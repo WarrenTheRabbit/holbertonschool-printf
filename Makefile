@@ -8,7 +8,11 @@ EXPECT_PASS = tests/expect_pass
 EXPECT_FAIL = tests/expect_fail
 
 TEST_TARGETS = \
-	test_that_prints_string
+	test_that_prints_string \
+	test_that_prints_string_with_newline_character \
+	test_that_prints_single_character \
+	test_that_handles_single_character
+	
 all:
 	@echo
 	@echo ' ' The current project always depends on root level source
@@ -42,6 +46,18 @@ test_that_prints_string: $(OBJECTS)
 	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
 	@$(EXPECT_PASS) tests/$@ 'Hello world!'
 	
+test_that_prints_string_with_newline_character: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ "Let's try to printf a simple sentence."
+	
+test_that_prints_single_character: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ 'c'
+
+test_that_handles_single_character: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ 'c'
+
 
 # Phony targets execute even if target exists in file system.
 .PHONY: clean test list edit 
