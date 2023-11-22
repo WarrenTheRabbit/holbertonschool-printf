@@ -11,7 +11,7 @@ int _printf(const char *const fmt, ...)
 	char ch;
 	float fval;
 	int dval;
-	char *sval;
+	/*char *sval;*/
 
 	index = 0;
 
@@ -26,7 +26,7 @@ int _printf(const char *const fmt, ...)
 
 		if (ch != '%')
 		{
-			putchar(fmt[index]);
+			_putchar(fmt[index]);
 			continue;
 		}
 
@@ -45,11 +45,10 @@ int _printf(const char *const fmt, ...)
 			printf("%f", fval);
 			break;
 		case 's':
-			sval = va_arg(args, char *);
-			printf("%s", sval);
+			printf_string(args);
 			break;
 		default:
-			putchar(fmt[index]);
+			_putchar(fmt[index]);
 		}
 	}
 	va_end(args);
