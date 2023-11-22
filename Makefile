@@ -11,7 +11,8 @@ TEST_TARGETS = \
 	test_that_prints_string \
 	test_that_prints_string_with_newline_character \
 	test_that_prints_single_character \
-	test_that_handles_single_character
+	test_that_handles_single_character \
+	test_that_handles_multiple_characters 
 	
 all:
 	@echo
@@ -58,6 +59,9 @@ test_that_handles_single_character: $(OBJECTS)
 	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
 	@$(EXPECT_PASS) tests/$@ 'c'
 
+test_that_handles_multiple_characters: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ 'cc'
 
 # Phony targets execute even if target exists in file system.
 .PHONY: clean test list edit 
