@@ -11,7 +11,10 @@ TEST_TARGETS = \
 	test_that_prints_string \
 	test_that_prints_string_with_newline_character \
 	test_that_prints_single_character \
-	test_that_handles_single_character
+	test_that_handles_single_character \
+	test_that_prints_string_with_string_format_with_newline_character \
+	test_that_prints_positive_integer_with_newline_character \
+	test_that_prints_negative_integer_with_newline_character
 	
 all:
 	@echo
@@ -58,6 +61,17 @@ test_that_handles_single_character: $(OBJECTS)
 	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
 	@$(EXPECT_PASS) tests/$@ 'c'
 
+test_that_prints_string_with_string_format_with_newline_character: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ "Let's try to printf a simple sentence."
+
+test_that_prints_positive_integer_with_newline_character: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ "number = 123."
+
+test_that_prints_negative_integer_with_newline_character: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ "number = -123."
 
 # Phony targets execute even if target exists in file system.
 .PHONY: clean test list edit 

@@ -10,8 +10,6 @@ int _printf(const char *const fmt, ...)
 	size_t index;
 	char ch;
 	float fval;
-	int dval;
-	/*char *sval;*/
 
 	index = 0;
 
@@ -37,8 +35,7 @@ int _printf(const char *const fmt, ...)
 			printf_char(args);
 			break;
 		case 'd':
-			dval = va_arg(args, int);
-			printf("%d", dval);
+			printf_integer(args);
 			break;
 		case 'f':
 			fval = va_arg(args, double);
