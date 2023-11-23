@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include "main.h"
 /**
-* initialise_formatters - Initializes the array of format specifiers
-* @specification: Array of Formatter structures
-*/
+ * initialise_formatters - Initializes the array of format specifiers
+ * @specification: Array of Formatter structures
+ */
 void initialise_formatters(Formatter *specification)
 {
 	int i = 0;
@@ -30,11 +30,11 @@ void initialise_formatters(Formatter *specification)
 	specification['%'].print = print_percent;
 }
 /**
-* print_by_specification - Prints a value based on the format specifier
-* @character: Format specifier character
-* @args: Variable arguments list
-* Return: The number of characters printed
-*/
+ * print_by_specification - Prints a value based on the format specifier
+ * @character: Format specifier character
+ * @args: Variable arguments list
+ * Return: The number of characters printed
+ */
 int print_by_specification(char character, va_list args)
 {
 	double fval;
@@ -44,15 +44,9 @@ int print_by_specification(char character, va_list args)
 
 	initialise_formatters(specification);
 
-
-	if (character == 'f')
+	if (specification[(int)character].print)
 	{
-		fval = va_arg(args, double);
-		length = printf("%f", fval);
-	}
-	else if (specification[(int) character].print)
-	{
-		length = specification[(int) character].print(args);
+		length = specification[(int)character].print(args);
 	}
 	else
 	{
@@ -64,12 +58,11 @@ int print_by_specification(char character, va_list args)
 	return (length);
 }
 
-
 /**
-* _printf - produces output according to a format
-* @fmt: the format
-* Return: the number of characters printed
-*/
+ * _printf - produces output according to a format
+ * @fmt: the format
+ * Return: the number of characters printed
+ */
 int _printf(const char *const fmt, ...)
 {
 	va_list args;
