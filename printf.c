@@ -56,7 +56,7 @@ int handle_integer(va_list args)
 int handle_string(va_list args)
 {
 	char *str = va_arg(args, char *);
-	return (printf_string(str));
+	return (printf_string(args));
 }
 
 int handle_format_specifier(const char *fmt, size_t *index, va_list args)
