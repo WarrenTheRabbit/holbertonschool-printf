@@ -12,5 +12,10 @@ int _strlenc(const char *str);
 int print_37(void);
 int print_integer_recursive(int num);
 int printf_integer(va_list val);
+typedef struct
+{
+	char symbol;
+	int (*print)(va_list args);
+} Formatter;
 
 #endif

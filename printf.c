@@ -4,34 +4,50 @@
 #include <stdlib.h>
 #include "main.h"
 
+void initialise_formatters(Formatter *specification)
+{
+	int i = 0;
 
+	for (i = 0; i < 256; i++)
+	{
+		specification[i].symbol = '\0';
+		specification[i].print = NULL;
+	}
 
-int print_by_specification(char *character, va_list args)
+	specification['c'].symbol = 'c';
+	specification['c'].print = printf_char;
+	specification['s'].symbol = 's';
+	specification['s'].print = printf_string;
+	specification['d'].symbol = 'd';
+	specification['d'].print = printf_integer;
+	
+}
+
+int print_by_specification(char character, va_list args)
 {
         double fval;
 	int length;
-
-        switch (*character)
-        {
-                case 'c':
-               	        length = printf_char(args);
-                        break;
-                case 'd':
-                        length = printf_integer(args);
-                        break;
-                case 'f':
-                        fval = va_arg(args, double);
-                        printf("%f", fval);
-                        break;
-                case 's':
-                        length = printf_string(args);
-                        break;
-                default:
-                        _putchar(*character);
-			length = 1;
-			break;
-        }
 	
+	Formatter specification[256];
+	initialise_formatters(specification);
+
+	
+	if (character == 'f')
+	{
+		fval = va_arg(args,double);
+		length = printf("%f", fval);
+				
+	}
+	else if (specification[(int) character].print)
+	{
+		length = specification[(int) character].print(args);
+	}
+	else {
+		_putchar('%');
+		_putchar(character);
+		length = 2;
+        }
+
 	return (length);
 }
 
@@ -40,7 +56,6 @@ int _printf(const char *const fmt, ...)
 {
 	va_list args;
 	size_t index;
-	char ch;
 	int length = 0;
 
 	index = 0;
@@ -60,9 +75,8 @@ int _printf(const char *const fmt, ...)
 		}
 		else
 		{
-		index++;
-		ch = fmt[index];
-		length += print_by_specification(&ch, args);
+			index++;
+			length += print_by_specification(fmt[index], args);
 		}
 
 	}
