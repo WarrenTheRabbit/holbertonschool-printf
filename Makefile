@@ -44,6 +44,9 @@ test_that_prints_single_percent: $(OBJECTS)
 	@$(EXPECT_PASS) tests/$@ "Should print a single percent sign: '%'\
 Should print a single percent sign: '%'"
 
+test_that_only_percent_does_not_print: $(OBJECTS)
+	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@
+	@$(EXPECT_PASS) tests/$@ ''
 
 test_that_prints_string: $(OBJECTS)
 	@$(CC) -g $(CFLAGS) $^ tests/$@.c -o tests/$@

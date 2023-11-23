@@ -83,8 +83,7 @@ int _printf(const char *const fmt, ...)
 		}
 		else if (fmt[index] == '%' && fmt[index+1] == '\0')
 		{
-			_putchar('%');
-			length++;
+			return (-1);
 		}
 		else {
 			index++;
