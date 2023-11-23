@@ -1,0 +1,41 @@
+.TH printf 3 "2023-11-23" "Holberton School printf Manual"
+
+.SH NAME
+printf \- custom printf function
+
+.SH SYNOPSIS
+\fB#include \fI"main.h"\fB\fP
+.sp
+\fBint _printf(const char *format, ...);\fP
+
+.SH DESCRIPTION
+The \fB_printf\fP function produces output according to a format.
+
+.SH RETURN VALUE
+Returns the number of characters printed (excluding the null byte used to end output to strings).
+
+.SH SEE ALSO
+printf(3)
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+Warren Markham
+Echezona Oji
+Tingru Liu
+
+.SH COPYRIGHT
+Copyright (C) 2023 by Holberton School.
+
+.SH NOTES
+This manual page was written for the Holberton School printf project.
+
+.SH REPORTING BUGS
+Report bugs to: your_email@holbertonschool.com
+Holberton School printf project home page: http://github.com/your_username/holbertonschool-printf
+General help using Holberton School printf: http://github.com/your_username/holbertonschool-printf/issues
+
+.SH COPYRIGHT
+This is free software; see the source for copying conditions. There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
