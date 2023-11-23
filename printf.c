@@ -20,6 +20,9 @@ void initialise_formatters(Formatter *specification)
 	specification['s'].print = printf_string;
 	specification['d'].symbol = 'd';
 	specification['d'].print = printf_integer;
+	specification['d'].symbol = 'd';
+	specification['i'].symbol = 'i';
+	specification['i'].print = printf_integer;
 	specification['%'].symbol = '%';
 	specification['%'].print = print_percent;
 }
