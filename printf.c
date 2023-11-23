@@ -15,52 +15,78 @@ int _printf(const char *const fmt, ...)
 	index = 0;
 
 	if (!fmt)
-		return -1;
+		return (-1);
 
 	va_start(args, fmt);
 
-	for (index = 0; fmt[index]; index++)
+	while (fmt[index])
 	{
 		ch = fmt[index];
 
 		if (ch != '%')
 		{
-			_putchar(fmt[index]);
+			_putchar(ch);
 			length++;
-			continue;
+		}
+		else
+		{
+			index++;
+			length += handle_format_specifier(fmt, &index, args);
 		}
 
 		index++;
-
-		switch (fmt[index])
-		{
-		case 'c':
-			length += printf_char(args);
-			break;
-		case 'd':
-			length += printf_integer(args);
-			break;
-		case 'f':
-			fval = va_arg(args, double);
-			printf("%f", fval);
-			break;
-		case 's':
-			length += printf_string(args);
-			break;
-		case '\0':
-			return -1;
-		case '!':
-		case 'K':
-			_putchar(fmt[index - 1]);
-			length++;
-			_putchar(fmt[index]);
-			length++;
-			break;
-		default:
-			_putchar(fmt[index]);
-			length++;
-		}
 	}
+
 	va_end(args);
-	return length;
+	return (length);
+}
+
+int handle_char(const char *fmt, size_t *index, va_list args)
+{
+	char c = va_arg(args, int);
+	_putchar(c);
+	return (1);
+}
+
+int handle_integer(va_list args)
+{
+	int num = va_arg(args, int);
+	return (print_integer_recursive(num));
+}
+
+int handle_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+	return (printf_string(str));
+}
+
+int handle_format_specifier(const char *fmt, size_t *index, va_list args)
+{
+	char specifier = fmt[*index];
+
+	switch (specifier)
+	{
+	case 'c':
+		return (handle_char(fmt, index, args));
+	case 'd':
+		return (handle_integer(args));
+	case 'f':
+		fval = va_arg(args, double);
+		printf("%f", fval);
+		break;
+	case 's':
+		return (handle_string(args));
+	case '\0':
+		return (-1);
+	case '!':
+	case 'K':
+		_putchar(fmt[index - 1]);
+		length++;
+		_putchar(fmt[index]);
+		length++;
+		break;
+	default:
+		_putchar(specifier);
+		return (1);
+	}
 }
