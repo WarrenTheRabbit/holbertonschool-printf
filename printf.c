@@ -30,6 +30,8 @@ int _printf(const char *const fmt, ...)
 		else
 		{
 			index++;
+			if (fmt[index] == '\0')
+				break;
 			length += handle_format_specifier(fmt, &index, args);
 		}
 
