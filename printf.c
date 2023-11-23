@@ -15,7 +15,7 @@ int _printf(const char *const fmt, ...)
 	index = 0;
 
 	if (!fmt)
-		return EXIT_FAILURE;
+		return length;
 
 	va_start(args, fmt);
 
