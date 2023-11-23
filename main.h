@@ -1,7 +1,7 @@
-#include <stdarg.h>
 #ifndef MAIN_H
 #define MAIN_H
 #include <unistd.h>
+#include <stdarg.h>
 
 int _putchar(char c);
 int _printf(const char *format, ...);
@@ -17,5 +17,9 @@ typedef struct
 	char symbol;
 	int (*print)(va_list args);
 } Formatter;
+int handle_char(va_list args);
+int handle_integer(va_list args);
+int handle_string(va_list args);
+int handle_format_specifier(const char *fmt, size_t *index, va_list args);
 
 #endif

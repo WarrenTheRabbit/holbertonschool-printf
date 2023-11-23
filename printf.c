@@ -52,6 +52,11 @@ int print_by_specification(char character, va_list args)
 }
 
 
+/**
+* _printf - produces output according to a format
+* @fmt: the format
+* Return: the number of characters printed
+*/
 int _printf(const char *const fmt, ...)
 {
 	va_list args;
@@ -77,8 +82,6 @@ int _printf(const char *const fmt, ...)
 		{
 			index++;
 			length += print_by_specification(fmt[index], args);
-		}
-
 	}
 	va_end(args);
 	return (length);
