@@ -12,6 +12,13 @@ int printf_integer(va_list val)
 	char buffer[20];
 	int i, len = 0, digitCount = 0;
 
+	if (num == 0)
+	{
+		_putchar('0');
+		++digitCount;
+		return digitCount;
+	}
+
 	if (num < 0)
 	{
 		_putchar('-');
