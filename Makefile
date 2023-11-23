@@ -7,15 +7,7 @@ OBJECTS = $(SRC:.c=.o)
 EXPECT_PASS = tests/expect_pass
 EXPECT_FAIL = tests/expect_fail
 
-TEST_TARGETS = \
-	test_that_prints_string \
-	test_that_prints_string_with_newline_character \
-	test_that_prints_single_character \
-	test_that_handles_single_character \
-	test_that_handles_multiple_characters \
-	test_that_prints_string_with_string_format_with_newline_character \
-	test_that_prints_positive_integer_with_newline_character \
-	test_that_prints_negative_integer_with_newline_character
+TEST_TARGETS = $(shell find tests -name 'test_that*.c' -exec basename {} .c \; | sort )
 	
 all:
 	@echo
