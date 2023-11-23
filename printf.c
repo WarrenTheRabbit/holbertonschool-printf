@@ -9,7 +9,6 @@ int _printf(const char *const fmt, ...)
 	va_list args;
 	size_t index;
 	char ch;
-	float fval;
 	int length = 0;
 
 	index = 0;
@@ -41,7 +40,7 @@ int _printf(const char *const fmt, ...)
 	return (length);
 }
 
-int handle_char(const char *fmt, size_t *index, va_list args)
+int handle_char(va_list args)
 {
 	char c = va_arg(args, int);
 	_putchar(c);
@@ -67,24 +66,24 @@ int handle_format_specifier(const char *fmt, size_t *index, va_list args)
 	switch (specifier)
 	{
 	case 'c':
-		return (handle_char(fmt, index, args));
+		return (handle_char(args));
 	case 'd':
 		return (handle_integer(args));
 	case 'f':
-		fval = va_arg(args, double);
-		printf("%f", fval);
-		break;
+		{
+			double fval = va_arg(args, double);
+			printf("%f", fval);
+			break;
+		}
 	case 's':
 		return (handle_string(args));
 	case '\0':
 		return (-1);
 	case '!':
 	case 'K':
-		_putchar(fmt[index - 1]);
-		length++;
-		_putchar(fmt[index]);
-		length++;
-		break;
+		_putchar(fmt[*index - 1]);
+		_putchar(fmt[*index]);
+		return (2);
 	default:
 		_putchar(specifier);
 		return (1);
