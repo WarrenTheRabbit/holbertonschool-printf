@@ -2,10 +2,11 @@
 #include <stdio.h>
 #include "main.h"
 
-/* printf_integer - prints a singe or multi digit integer
- * @val: variable length argument list
- * Return: the length of the integer
- */
+/**
+*  printf_integer - prints a singe or multi digit integer
+* @val: variable length argument list
+* Return: the length of the integer
+*/
 int printf_integer(va_list val)
 {
 	long num = va_arg(val, int);
@@ -16,7 +17,7 @@ int printf_integer(va_list val)
 	{
 		_putchar('0');
 		++digitCount;
-		return digitCount;
+		return (digitCount);
 	}
 
 	if (num < 0)
@@ -37,5 +38,5 @@ int printf_integer(va_list val)
 	{
 		_putchar(buffer[i]);
 	}
-	return digitCount;
+	return (digitCount);
 }

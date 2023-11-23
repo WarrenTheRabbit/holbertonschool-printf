@@ -3,7 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "main.h"
-
+/**
+* _printf - produces output according to a format
+* @fmt: the format
+* Return: the number of characters printed
+*/
 int _printf(const char *const fmt, ...)
 {
 	va_list args;
