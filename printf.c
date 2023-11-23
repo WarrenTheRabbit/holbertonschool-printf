@@ -9,91 +9,58 @@ int _printf(const char *const fmt, ...)
 	va_list args;
 	size_t index;
 	char ch;
+	float fval;
 	int length = 0;
 
 	index = 0;
 
 	if (!fmt)
-		return (-1);
+		return -1;
 
 	va_start(args, fmt);
 
-	while (fmt[index])
+	for (index = 0; fmt[index]; index++)
 	{
 		ch = fmt[index];
 
 		if (ch != '%')
 		{
-			_putchar(ch);
+			_putchar(fmt[index]);
 			length++;
-		}
-		else
-		{
-			index++;
-			if (fmt[index] != '\0')
-			{
-				length += handle_format_specifier(fmt, &index, args);
-			}
-			else
-			{
-				_putchar('%');
-				length++;
-			}
+			continue;
 		}
 
 		index++;
-	}
 
-	va_end(args);
-	return (length);
-}
-
-int handle_char(va_list args)
-{
-	char c = va_arg(args, int);
-	_putchar(c);
-	return (1);
-}
-
-int handle_integer(va_list args)
-{
-	int num = va_arg(args, int);
-	return (print_integer_recursive(num));
-}
-
-int handle_string(va_list args)
-{
-	return (printf_string(args));
-}
-
-int handle_format_specifier(const char *fmt, size_t *index, va_list args)
-{
-	char specifier = fmt[*index];
-
-	switch (specifier)
-	{
-	case 'c':
-		return (handle_char(args));
-	case 'd':
-		return (handle_integer(args));
-	case 'f':
+		switch (fmt[index])
 		{
-			double fval = va_arg(args, double);
+		case 'c':
+			length += printf_char(args);
+			break;
+		case 'd':
+			length += printf_integer(args);
+			break;
+		case 'f':
+			fval = va_arg(args, double);
 			printf("%f", fval);
 			break;
+		case 's':
+			length += printf_string(args);
+			break;
+		case '\0':
+			return -1;
+		case '!':
+		case 'K':
+			_putchar(fmt[index - 1]);
+			length++;
+			_putchar(fmt[index]);
+			length++;
+			break;
+		default:
+			_putchar(fmt[index]);
+			length++;
 		}
-	case 's':
-		return (handle_string(args));
-	case '\0':
-		return (-1);
-	case '!':
-	case 'K':
-		_putchar(fmt[*index - 1]);
-		_putchar(fmt[*index]);
-		return (2);
-	default:
-		_putchar(specifier);
-		return (1);
 	}
-	return (0);
+	va_end(args);
+	return (length);
 }
