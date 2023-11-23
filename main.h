@@ -12,5 +12,9 @@ int _strlenc(const char *str);
 int print_37(void);
 int print_integer_recursive(int num);
 int printf_integer(va_list val);
+int handle_char(const char *fmt, size_t *index, va_list args);
+int handle_integer(va_list args);
+int handle_string(va_list args);
+int handle_format_specifier(const char *fmt, size_t *index, va_list args);
 
 #endif

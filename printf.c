@@ -30,8 +30,37 @@ int _printf(const char *const fmt, ...)
 		}
 		else
 		{
+<<<<<<< HEAD
 			index++;
 			length += handle_format_specifier(fmt, &index, args);
+=======
+		case 'c':
+			length += printf_char(args);
+			break;
+		case 'd':
+		case 'i':
+			length += printf_integer(args);
+			break;
+		case 'f':
+			fval = va_arg(args, double);
+			printf("%f", fval);
+			break;
+		case 's':
+			length += printf_string(args);
+			break;
+		case '\0':
+			return -1;
+		case '!':
+		case 'K':
+			_putchar(fmt[index - 1]);
+			length++;
+			_putchar(fmt[index]);
+			length++;
+			break;
+		default:
+			_putchar(fmt[index]);
+			length++;
+>>>>>>> origin/main
 		}
 
 		index++;
