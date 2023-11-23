@@ -29,6 +29,11 @@ int _printf(const char *const fmt, ...)
 		}
 
 		index++;
+
+	
+		/* I will refactor this section so that switch statements
+		 * are not necessary. */
+
 		switch (fmt[index])
 		{
 		case 'c':
