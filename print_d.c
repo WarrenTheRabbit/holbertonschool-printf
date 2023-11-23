@@ -26,7 +26,6 @@ int printf_integer(va_list val)
 		digitCount++;
 	}
 
-	// Print the formatted string
 	for (int i = len - 1; i >= 0; i--)
 	{
 		_putchar(buffer[i]);
