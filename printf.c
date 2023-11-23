@@ -4,52 +4,68 @@
 #include <stdlib.h>
 #include "main.h"
 
+
+
+int print_by_specification(char *character, va_list args)
+{
+        double fval;
+	int length;
+
+        switch (*character)
+        {
+                case 'c':
+               	        length = printf_char(args);
+                        break;
+                case 'd':
+                        length = printf_integer(args);
+                        break;
+                case 'f':
+                        fval = va_arg(args, double);
+                        printf("%f", fval);
+                        break;
+                case 's':
+                        length = printf_string(args);
+                        break;
+                default:
+                        _putchar(*character);
+			length = 1;
+			break;
+        }
+	
+	return (length);
+}
+
+
 int _printf(const char *const fmt, ...)
 {
 	va_list args;
 	size_t index;
 	char ch;
-	float fval;
 	int length = 0;
 
 	index = 0;
 
 	if (!fmt)
-		return EXIT_FAILURE;
+		return (-1);
 
 	va_start(args, fmt);
 
 	for (index = 0; fmt[index]; index++)
 	{
-		ch = fmt[index];
 
-		if (ch != '%')
+		if (fmt[index] != '%')
 		{
 			_putchar(fmt[index]);
 			length++;
-			continue;
+		}
+		else
+		{
+		index++;
+		ch = fmt[index];
+		length += print_by_specification(&ch, args);
 		}
 
-		index++;
-		switch (fmt[index])
-		{
-		case 'c':
-			length += printf_char(args);
-			break;
-		case 'd':
-			printf_integer(args);
-			break;
-		case 'f':
-			fval = va_arg(args, double);
-			printf("%f", fval);
-			break;
-		case 's':
-			printf_string(args);
-			break;
-		default:
-			_putchar(fmt[index]);
-		}
 	}
 	va_end(args);
-	return length;
+	return (length);
 }
