@@ -49,6 +49,12 @@ int _printf(const char *const fmt, ...)
 			break;
 		case '\0':
 			return -1;
+		case '!':
+			_putchar(fmt[index - 1]);
+			length++;
+			_putchar(fmt[index]);
+			length++;
+			break;
 		default:
 			_putchar(fmt[index]);
 			length++;
