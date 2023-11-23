@@ -10,6 +10,7 @@ int _printf(const char *const fmt, ...)
 	size_t index;
 	char ch;
 	float fval;
+	int length = 0;
 
 	index = 0;
 
@@ -25,6 +26,7 @@ int _printf(const char *const fmt, ...)
 		if (ch != '%')
 		{
 			_putchar(fmt[index]);
+			length++;
 			continue;
 		}
 
@@ -32,7 +34,7 @@ int _printf(const char *const fmt, ...)
 		switch (fmt[index])
 		{
 		case 'c':
-			printf_char(args);
+			length = printf_char(args);
 			break;
 		case 'd':
 			printf_integer(args);
@@ -49,5 +51,5 @@ int _printf(const char *const fmt, ...)
 		}
 	}
 	va_end(args);
-	return EXIT_SUCCESS;
+	return length;
 }
