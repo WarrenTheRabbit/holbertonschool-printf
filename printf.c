@@ -42,7 +42,8 @@ int print_by_specification(char character, va_list args)
 	{
 		length = specification[(int) character].print(args);
 	}
-	else {
+	else 
+	{
 		_putchar('%');
 		_putchar(character);
 		length = 2;
@@ -82,7 +83,10 @@ int _printf(const char *const fmt, ...)
 		{
 			index++;
 			length += print_by_specification(fmt[index], args);
+		}
 	}
+
 	va_end(args);
+
 	return (length);
 }
