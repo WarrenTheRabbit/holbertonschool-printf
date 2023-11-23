@@ -17,6 +17,7 @@ int print_integer_recursive(int num)
 	if (num / 10)
 	{
 		int len = print_integer_recursive(num / 10);
+
 		_putchar(num % 10 + '0');
 		return (len + 1);
 	}
