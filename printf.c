@@ -20,6 +20,8 @@ void initialise_formatters(Formatter *specification)
 	specification['s'].print = printf_string;
 	specification['d'].symbol = 'd';
 	specification['d'].print = printf_integer;
+	specification['%'].symbol = '%';
+	specification['%'].print = print_percent;
 	
 }
 
@@ -79,8 +81,12 @@ int _printf(const char *const fmt, ...)
 			_putchar(fmt[index]);
 			length++;
 		}
-		else
+		else if (fmt[index] == '%' && fmt[index+1] == '\0')
 		{
+			_putchar('%');
+			length++;
+		}
+		else {
 			index++;
 			length += print_by_specification(fmt[index], args);
 		}
