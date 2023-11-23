@@ -15,7 +15,7 @@ int _printf(const char *const fmt, ...)
 	index = 0;
 
 	if (!fmt)
-		return EXIT_FAILURE;
+		return -1;
 
 	va_start(args, fmt);
 
@@ -31,23 +31,34 @@ int _printf(const char *const fmt, ...)
 		}
 
 		index++;
+
 		switch (fmt[index])
 		{
 		case 'c':
-			length = printf_char(args);
+			length += printf_char(args);
 			break;
 		case 'd':
-			printf_integer(args);
+			length += printf_integer(args);
 			break;
 		case 'f':
 			fval = va_arg(args, double);
 			printf("%f", fval);
 			break;
 		case 's':
-			printf_string(args);
+			length += printf_string(args);
+			break;
+		case '\0':
+			return -1;
+		case '!':
+		case 'K':
+			_putchar(fmt[index - 1]);
+			length++;
+			_putchar(fmt[index]);
+			length++;
 			break;
 		default:
 			_putchar(fmt[index]);
+			length++;
 		}
 	}
 	va_end(args);
