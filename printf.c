@@ -10,8 +10,6 @@ int _printf(const char *const fmt, ...)
 	size_t index;
 	char ch;
 	float fval;
-	int dval;
-	char *sval;
 
 	index = 0;
 
@@ -26,7 +24,7 @@ int _printf(const char *const fmt, ...)
 
 		if (ch != '%')
 		{
-			putchar(fmt[index]);
+			_putchar(fmt[index]);
 			continue;
 		}
 
@@ -37,19 +35,17 @@ int _printf(const char *const fmt, ...)
 			printf_char(args);
 			break;
 		case 'd':
-			dval = va_arg(args, int);
-			printf("%d", dval);
+			printf_integer(args);
 			break;
 		case 'f':
 			fval = va_arg(args, double);
 			printf("%f", fval);
 			break;
 		case 's':
-			sval = va_arg(args, char *);
-			printf("%s", sval);
+			printf_string(args);
 			break;
 		default:
-			putchar(fmt[index]);
+			_putchar(fmt[index]);
 		}
 	}
 	va_end(args);
