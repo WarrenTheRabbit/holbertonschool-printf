@@ -50,6 +50,7 @@ int _printf(const char *const fmt, ...)
 		case '\0':
 			return -1;
 		case '!':
+		case 'K':
 			_putchar(fmt[index - 1]);
 			length++;
 			_putchar(fmt[index]);
