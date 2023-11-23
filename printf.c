@@ -37,17 +37,18 @@ int _printf(const char *const fmt, ...)
 			length += printf_char(args);
 			break;
 		case 'd':
-			printf_integer(args);
+			length += printf_integer(args);
 			break;
 		case 'f':
 			fval = va_arg(args, double);
 			printf("%f", fval);
 			break;
 		case 's':
-			printf_string(args);
+			length += printf_string(args);
 			break;
 		default:
 			_putchar(fmt[index]);
+			length++;
 		}
 	}
 	va_end(args);
