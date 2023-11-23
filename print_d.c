@@ -10,7 +10,7 @@ int printf_integer(va_list val)
 {
 	int num = va_arg(val, int);
 	char buffer[20];
-	int len = 0, digitCount = 0;
+	int i, len = 0, digitCount = 0;
 
 	if (num < 0)
 	{
@@ -26,8 +26,7 @@ int printf_integer(va_list val)
 		digitCount++;
 	}
 
-	// Print the formatted string
-	for (int i = len - 1; i >= 0; i--)
+	for (i = len - 1; i >= 0; i--)
 	{
 		_putchar(buffer[i]);
 	}
