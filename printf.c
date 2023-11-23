@@ -88,4 +88,5 @@ int handle_format_specifier(const char *fmt, size_t *index, va_list args)
 		_putchar(specifier);
 		return (1);
 	}
+	return (0);
 }
