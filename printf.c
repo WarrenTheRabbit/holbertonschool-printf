@@ -19,7 +19,7 @@ int _printf(const char *const fmt, ...)
 	index = 0;
 
 	if (!fmt)
-		return -1;
+		return (-1);
 
 	va_start(args, fmt);
 
@@ -52,7 +52,7 @@ int _printf(const char *const fmt, ...)
 			length += printf_string(args);
 			break;
 		case '\0':
-			return -1;
+			return (-1);
 		case '!':
 		case 'K':
 			_putchar(fmt[index - 1]);
