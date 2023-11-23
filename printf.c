@@ -34,7 +34,7 @@ int _printf(const char *const fmt, ...)
 		switch (fmt[index])
 		{
 		case 'c':
-			length = printf_char(args);
+			length += printf_char(args);
 			break;
 		case 'd':
 			printf_integer(args);
