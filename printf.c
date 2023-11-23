@@ -37,7 +37,6 @@ void initialise_formatters(Formatter *specification)
  */
 int print_by_specification(char character, va_list args)
 {
-	double fval;
 	int length;
 
 	Formatter specification[256];
