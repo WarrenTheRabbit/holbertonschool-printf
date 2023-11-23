@@ -30,7 +30,7 @@ int print_by_specification(char character, va_list args)
 	int length;
 
 	Formatter specification[256];
-	
+
 	initialise_formatters(specification);
 
 
