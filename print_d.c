@@ -8,7 +8,7 @@
  */
 int printf_integer(va_list val)
 {
-	int num = va_arg(val, int);
+	long num = va_arg(val, int);
 	char buffer[20];
 	int i, len = 0, digitCount = 0;
 
