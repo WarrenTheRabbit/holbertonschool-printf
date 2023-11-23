@@ -30,12 +30,13 @@ int print_by_specification(char character, va_list args)
 	int length;
 
 	Formatter specification[256];
+	
 	initialise_formatters(specification);
 
 
 	if (character == 'f')
 	{
-		fval = va_arg(args,double);
+		fval = va_arg(args, double);
 		length = printf("%f", fval);
 	}
 	else if (specification[(int) character].print)
@@ -79,7 +80,7 @@ int _printf(const char *const fmt, ...)
 			_putchar(fmt[index]);
 			length++;
 		}
-		else if (fmt[index] == '%' && fmt[index+1] == '\0')
+		else if (fmt[index] == '%' && fmt[index + 1] == '\0')
 		{
 			return (-1);
 		}
