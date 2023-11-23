@@ -31,6 +31,7 @@ int _printf(const char *const fmt, ...)
 		}
 
 		index++;
+
 		switch (fmt[index])
 		{
 		case 'c':
@@ -47,8 +48,7 @@ int _printf(const char *const fmt, ...)
 			length += printf_string(args);
 			break;
 		case '\0':
-			length = -1;
-			break;
+			return -1;
 		default:
 			_putchar(fmt[index]);
 			length++;
