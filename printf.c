@@ -38,6 +38,7 @@ int _printf(const char *const fmt, ...)
 			length += printf_char(args);
 			break;
 		case 'd':
+		case 'i':
 			length += printf_integer(args);
 			break;
 		case 'f':
