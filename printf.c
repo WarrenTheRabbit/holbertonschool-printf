@@ -48,6 +48,7 @@ int _printf(const char *const fmt, ...)
 			break;
 		case '\0':
 			length = -1;
+			break;
 		default:
 			_putchar(fmt[index]);
 			length++;
