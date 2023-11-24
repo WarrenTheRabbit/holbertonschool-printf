@@ -10,12 +10,18 @@ void initialise_formatters(Formatter *specification)
 
 	for (i = 0; i < 256; i++)
 	{
-		specification[i] = (Formatter){ '\0', NULL };
+		specification[i].symbol = '\0';
+		specification[i].print = NULL;
 	}
 
-	specification['c'] = (Formatter){ .symbol = 'c', .print = printf_char };
-	specification['s'] = (Formatter){ .symbol = 's', .print = printf_string };
-	specification['d'] = (Formatter){ .symbol = 'd', .print = printf_integer };
-	specification['i'] = (Formatter){ .symbol = 'i', .print = printf_integer };
-	specification['%'] = (Formatter){ .symbol = '%', .print = print_percent };
+	specification['c'].symbol = 'c';
+	specification['c'].print = printf_char;
+	specification['s'].symbol = 's';
+	specification['s'].print = printf_string;
+	specification['d'].symbol = 'd';
+	specification['d'].print = printf_integer;
+	specification['i'].symbol = 'i';
+	specification['i'].print = printf_integer;
+	specification['%'].symbol = '%';
+	specification['%'].print = print_percent;
 }
