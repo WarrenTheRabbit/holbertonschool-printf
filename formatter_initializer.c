@@ -14,14 +14,14 @@ void initialise_formatters(Formatter *specification)
 		specification[i].print = NULL;
 	}
 
-	specification['c'].symbol = 'c';
-	specification['c'].print = printf_char;
-	specification['s'].symbol = 's';
-	specification['s'].print = printf_string;
-	specification['d'].symbol = 'd';
-	specification['d'].print = printf_integer;
-	specification['i'].symbol = 'i';
-	specification['i'].print = printf_integer;
-	specification['%'].symbol = '%';
-	specification['%'].print = print_percent;
+	specification['c'].symbol = 'c';
+	specification['c'].print = printf_char;
+	specification['s'].symbol = 's';
+	specification['s'].print = printf_string;
+	specification['d'].symbol = 'd';
+	specification['d'].print = printf_integer;
+	specification['i'].symbol = 'i';
+	specification['i'].print = printf_integer;
+	specification['%'].symbol = '%';
+	specification['%'].print = print_percent;
 }
