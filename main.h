@@ -20,5 +20,6 @@ typedef struct
 } Formatter;
 int handle_char(va_list args);
 void initialise_formatters(Formatter *specification);
+int print_by_specification(char character, va_list args);
 
 #endif
