@@ -1,7 +1,7 @@
 .TH printf 3 "2023-11-23" "Holberton School printf Manual"
 
 .SH NAME
-printf \- custom printf function
+.B _printf \- custom printf function
 
 .SH SYNOPSIS
 \fB#include \fI"main.h"\fB\fP
@@ -13,6 +13,9 @@ The \fB_printf\fP function produces output according to a format.
 
 .SH RETURN VALUE
 Returns the number of characters printed (excluding the null byte used to end output to strings).
+
+If an output error is encountered, -1 is returned.
+.in
 
 .SH SEE ALSO
 printf(3)
