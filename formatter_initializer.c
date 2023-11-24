@@ -10,7 +10,7 @@ void initialise_formatters(Formatter *specification)
 
 	for (i = 0; i < 256; i++)
 	{
-		specification[i] = (Formatter){ .symbol = '\0', .print = NULL };
+		specification[i] = (Formatter){ '\0', NULL };
 	}
 
 	specification['c'] = (Formatter){ .symbol = 'c', .print = printf_char };
