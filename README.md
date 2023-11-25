@@ -3,6 +3,10 @@ Implements a custom printf for C program completed as part of the low-level
 programming and algorithm track at Holberton School. The program is a partial
 recreation of the C standard library function, `printf`.
 
+## [FLowchart](https://miro.com/app/board/uXjVNM638ws=/)
+
+
+
 ## Dependencies :couple:
 
 The `_printf` function was coded on an Ubuntu 20.04 LTS machine with `gcc` version 10.2.1.
