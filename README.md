@@ -177,7 +177,7 @@ Output:
 ## Authors :black_nib:
 
 * Warren Markham <[WarrenTheRabbit](https://github.com/WarrenTheRabbit)>
-* Tingru Liu 
+* Tingru Liu <[tingru0515](https://github.com/tingru0515)>
 * Echezona Oji <[zonafrank](https://github.com/zonafrank)>
 
 ## License :lock:
